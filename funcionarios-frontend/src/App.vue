@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-<meta charset="utf-8">
-<link rel="shortcut icon" href="favicon.ico"/>
-<title>Funcionários - Início</title>
-<link rel="stylesheet" type="text/css"
-	href="resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="resources/css/bootstrap-vue.css">
-</head>
-
-<body>
-
-
+<template>
 	<div id="inicio" class="container-fluid table" >
 		<h4>Lista dos Funcionários</h4>
 		<table>
@@ -40,9 +25,14 @@
 		  </tbody>
 		</table>
 	  </div>
+</template>
 
-	<script src="resources/js/vue.js"></script>
-	<script src="resources/js/axios.min.js"></script>
-	<script src="resources/js/index.js"></script>
-</body>
-</html>
+<script>
+export default {
+  
+}
+</script>
+
+<style>
+
+</style>
