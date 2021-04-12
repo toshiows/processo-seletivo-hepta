@@ -4,5 +4,13 @@ export default {
 
     listar:() => {
         return http.get('funcionarios')
+    },
+
+    deletar:(funcionario) => {
+        return http.delete('produto', {data: funcionario})
+    },
+
+    salvar:(funcionario) => {
+        return http.post('funcionario')
     }
 }

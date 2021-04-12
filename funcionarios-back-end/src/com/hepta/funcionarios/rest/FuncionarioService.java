@@ -51,8 +51,13 @@ public class FuncionarioService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@POST
-	public Response FuncionarioCreate(Funcionario Funcionario) {
-		return Response.status(Status.NOT_IMPLEMENTED).build();
+	public Response FuncionarioCreate(Funcionario funcionario) {
+		try {
+			dao.save(funcionario);
+		}catch(Exception e) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+		}
+		return Response.status(Status.OK).build(); 
 	}
 
 	/**
@@ -87,10 +92,14 @@ public class FuncionarioService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@PUT
-	public Response FuncionarioUpdate(@PathParam("id") Integer id, Funcionario Funcionario) {
+	public Response FuncionarioUpdate(@PathParam("id") Integer id, Funcionario funcionario) {
+		try {
+			dao.update(funcionario);
+		}catch(Exception e) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+		}
 		
-		
-		return Response.status(Status.NOT_IMPLEMENTED).build();
+		return Response.status(Status.OK).build();
 	}
 
 	/**
@@ -99,20 +108,17 @@ public class FuncionarioService {
 	 * @param id: id do Funcionario
 	 * @return response 200 (OK) - Conseguiu remover
 	 */
-	@Path("delete/{id}")
+	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@DELETE
 	public Response FuncionarioDelete(@PathParam("id") Integer id) {
 		try {
 			dao.delete(id);
-			//http://localhost:8080/funcionarios/rs/funcionarios/delete/3
-			return Response.status(Status.OK).build();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
 		
-		return Response.status(Status.NOT_IMPLEMENTED).build();
+		return Response.status(Status.OK).build();
 	}
 
 }
