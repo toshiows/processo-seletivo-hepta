@@ -73,7 +73,7 @@ public class FuncionarioService {
 
 		GenericEntity<List<Funcionario>> entity = new GenericEntity<List<Funcionario>>(Funcionarios) {
 		};
-		return Response.status(Status.OK).entity(entity).build();
+		return Response.status(Status.OK).entity(entity).header("Access-Control-Allow-Origin", "*").build();
 	}
 
 	/**

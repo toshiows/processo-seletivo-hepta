@@ -16,7 +16,7 @@ public class DummyData {
 		//f.setId(1);
 		f.setEmail("teste");
 		f.setIdade(25);
-		f.setNome("Toshio");
+		f.setNome("Thiago");
 		f.setSalario(1500.00);
 		f.setSetor(s);
 		
