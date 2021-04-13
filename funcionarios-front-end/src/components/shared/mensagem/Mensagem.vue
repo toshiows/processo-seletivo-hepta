@@ -1,0 +1,46 @@
+<template>
+<div class="alert alert-warning alert-dismissible fade show" role="alert" id="msg">
+    <div class="materialert success">
+        {{ mensagem }}
+    </div>
+</div>
+</template>
+
+<script>
+export default {
+
+    props: ['mensagem']
+}
+</script>
+
+<style scoped>
+#msg {
+  opacity: 0;
+}
+
+.materialert{
+    position: relative;
+    min-width: 150px;
+    padding: 15px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: all 0.1s linear;
+    webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.materialert.success{
+    background-color: #43a047;
+    color: #fff;
+}
+</style>

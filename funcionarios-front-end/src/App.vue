@@ -1,21 +1,12 @@
 <template>
   <div id="app">
 
-    <nav>
-      <div class="nav-wrapper orange darken-1">
-        <a href="#!" class="brand-logo"><img src="./assets/logo_01.png"></a>
-        <a href="#" class="brand-logo center">Sistema de cadastro de funcionarios</a>
-      </div>
-    </nav>
+    <cabecalho sistema="Sistema de cadastro de funcionarios"/>
 
     <div class="container">
-
-      <div class="alert alert-warning alert-dismissible fade show" role="alert" id="msg">
-        <div class="materialert success">
-          {{ mensagem }}
-        </div>
-      </div>
-
+      
+      <mensagem-acao :mensagem="mensagem" />
+      <furmulario />
       <form @submit.prevent="salvar">
 
           <label>Nome</label>
@@ -33,7 +24,7 @@
 
       </form>
 
-      <table>
+      <table class="striped">
 
         <thead>
 
@@ -73,9 +64,18 @@
 </template>
 
 <script>
+import Header from './components/shared/header/Header.vue'
+import Mensagem from './components/shared/mensagem/Mensagem.vue'
+import Form from './components/shared/form/Form.vue'
 import Funcionario from './services/funcionarios'
 
 export default {
+
+  components: {
+    'mensagem-acao' : Mensagem,
+    'cabecalho' : Header,
+    'furmulario' : Form
+  },
 
   data() {
     return {
@@ -90,7 +90,7 @@ export default {
         idade: null
       },
       funcionarios:[],
-      mensagem: null
+      mensagem: ''
     }
   },
 
@@ -171,40 +171,5 @@ export default {
 </script>
 
 <style>
-img {
-  width: 60px;
-  height: 60px;
-  margin-left: 10px;
-  margin-top: 2px;
-}
 
-#msg {
-  opacity: 0;
-}
-
-.materialert{
-    position: relative;
-    min-width: 150px;
-    padding: 15px;
-    margin-bottom: 20px;
-    margin-top: 15px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    transition: all 0.1s linear;
-    webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-
-.materialert.success{
-    background-color: #43a047;
-    color: #fff;
-}
 </style>

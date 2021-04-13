@@ -24,7 +24,7 @@ Projeto crud feito para o processo seletivo da Hepta.
 
 ## :hammer:	Technologies
 This project was developed with these technologies:
-- [Vue](https://vuejs.org/)
+- [VueJS](https://vuejs.org/)
 - [Html5]()
 - [Bootstrap](https://getbootstrap.com/)
 - [Java 8] ()
