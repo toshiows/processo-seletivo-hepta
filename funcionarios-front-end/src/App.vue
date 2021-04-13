@@ -51,8 +51,8 @@
             <td>{{ funcionario.email }}</td> 
             <td>{{ funcionario.idade }}</td>
             <td>
-              <button class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
-              <button class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
+              <button @click="editar(funcionario)" class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
+              <button @click="remover(funcionario.id)" class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
             </td>
 
           </tr>
@@ -74,13 +74,14 @@ export default {
   data() {
     return {
       funcionario: {
-        nome:'',
+        id: null,
+        nome: null,
         setor: {
-          nome: ''
+          nome: null
         },
-        salario: '',
-        email: '',
-        idade: ''
+        salario: null,
+        email: null,
+        idade: null
       },
       funcionarios:[]
     }
@@ -98,6 +99,7 @@ export default {
     },
 
   async salvar() {
+    if(this.funcionario.id == null) {
       this.listar()
       await Funcionario.salvar(this.funcionario)
       .then()
@@ -105,6 +107,33 @@ export default {
 
       this.limpaCampo()
       this.listar()
+    }
+    else {
+      this.atualizar()
+    }
+      },
+
+     async atualizar() {
+       await Funcionario.atualizar(this.funcionario)
+        .then()
+        .catch((err) => console.log(err))
+
+        this.limpaCampo()
+        this.listar()
+      },
+
+      editar(funcionario) {
+        this.funcionario = funcionario;
+      },
+
+      async remover(id) {
+        console.log(id)
+ 
+        await Funcionario.deletar(id)
+        .then()
+        .catch((err) => console.log(err))
+        
+        this.listar()
       },
 
       limpaCampo() {

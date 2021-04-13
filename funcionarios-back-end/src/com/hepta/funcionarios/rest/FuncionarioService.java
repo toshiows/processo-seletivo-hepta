@@ -88,11 +88,11 @@ public class FuncionarioService {
 	 * @param Funcionario: Funcionario atualizado
 	 * @return response 200 (OK) - Conseguiu atualizar
 	 */
-	@Path("/{id}")
+	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@PUT
-	public Response FuncionarioUpdate(@PathParam("id") Integer id, Funcionario funcionario) {
+	public Response FuncionarioUpdate(Funcionario funcionario) {
 		try {
 			dao.update(funcionario);
 		}catch(Exception e) {
