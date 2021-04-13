@@ -10,18 +10,18 @@
 
     <div class="container">
 
-      <form>
+      <form @submit.prevent="salvar">
 
           <label>Nome</label>
-          <input type="text" placeholder="Nome">
+          <input type="text" placeholder="Nome" v-model="funcionario.nome">
           <label>Setor</label>
-          <input type="text" placeholder="Setor">
+          <input type="text" placeholder="Setor" v-model="funcionario.setor.nome">
           <label>Salário</label>
-          <input type="number" placeholder="QTD">
+          <input type="number" placeholder="Salario" v-model="funcionario.salario">
           <label>Email</label>
-          <input type="text" placeholder="Valor">
+          <input type="text" placeholder="Email" v-model="funcionario.email">
           <label>Idade</label>
-          <input type="number" placeholder="QTD">
+          <input type="number" placeholder="Idade" v-model="funcionario.idade">
 
           <button class="waves-effect waves-light btn-small">Salvar<i class="material-icons left">save</i></button>
 
@@ -51,7 +51,7 @@
             <td>{{ funcionario.email }}</td> 
             <td>{{ funcionario.idade }}</td>
             <td>
-              <button class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i>@click="deleteProduto(results, funcionario.id)</button>
+              <button class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
               <button class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
             </td>
 
@@ -73,16 +73,50 @@ export default {
 
   data() {
     return {
+      funcionario: {
+        nome:'',
+        setor: {
+          nome: ''
+        },
+        salario: '',
+        email: '',
+        idade: ''
+      },
       funcionarios:[]
     }
   },
 
   mounted() {
-    Funcionario.listar().then(resposta => {
-      this.funcionarios = resposta.data;
-    })
+    this.listar()
+  },
+
+  methods: {
+    listar() {
+        Funcionario.listar().then(resposta => {
+        this.funcionarios = resposta.data;
+     })
+    },
+
+  async salvar() {
+      this.listar()
+      await Funcionario.salvar(this.funcionario)
+      .then()
+      .catch((err) => console.log(err))
+
+      this.limpaCampo()
+      this.listar()
+      },
+
+      limpaCampo() {
+        this.funcionario.nome = null
+        this.funcionario.setor.nome = null
+        this.funcionario.salario = null
+        this.funcionario.email = null
+        this.funcionario.idade = null
+      }
+
+    }
   }
-}
 
 </script>
 

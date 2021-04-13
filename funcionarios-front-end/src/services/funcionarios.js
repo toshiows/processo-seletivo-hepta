@@ -11,6 +11,6 @@ export default {
     },
 
     salvar:(funcionario) => {
-        return http.post('funcionario')
+        return http.post('funcionarios', funcionario)
     }
 }
