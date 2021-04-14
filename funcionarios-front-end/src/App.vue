@@ -29,7 +29,7 @@
                                 <label for="Salario">Salário</label>
                                 <input class="form-control form-control-sm" type="number" placeholder="Salario" v-model="funcionario.salario" required>
                                 <label for="Email">Email</label>
-                                <input class="form-control form-control-sm" type="text" placeholder="Email" v-model="funcionario.email" required>
+                                <input class="form-control form-control-sm" type="email" placeholder="Email" v-model="funcionario.email" required>
                                 <label for="Idade">Idade</label>
                                 <input class="form-control form-control-sm" type="number" placeholder="Idade" v-model="funcionario.idade" required>
                                 <div class="modal-footer">
