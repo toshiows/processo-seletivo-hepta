@@ -1,32 +1,59 @@
 <template>
   <div id="app">
 
-    <cabecalho sistema="Sistema de cadastro de funcionarios"/>
+    <cabecalho sistema="Sistema de cadastro de funcionarios" />
 
     <div class="container">
-      
       <mensagem-acao :mensagem="mensagem" />
-      <furmulario />
-      <form @submit.prevent="salvar">
+      
+      <div id="app">
+        <div v-if="showModal">
+          <transition name="modal">
+            <div class="modal-mask">
+              <div class="modal-wrapper">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">{{ operacao }} </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" @click="showModal = false">&times;</span>
+                      </button>
+                        </div>
+                          <div class="modal-body">
+                            <div class="form-group">
+                              <form @submit.prevent="salvar">
+                                <label for="Nome">Nome</label>
+                                <input class="form-control form-control-sm" type="text" placeholder="Nome" v-model="funcionario.nome" required>
+                                <label for="Setor">Setor</label>
+                                <input class="form-control form-control-sm" type="text" placeholder="Setor" v-model="funcionario.setor.nome" required>
+                                <label for="Salario">Salário</label>
+                                <input class="form-control form-control-sm" type="number" placeholder="Salario" v-model="funcionario.salario" required>
+                                <label for="Email">Email</label>
+                                <input class="form-control form-control-sm" type="text" placeholder="Email" v-model="funcionario.email" required>
+                                <label for="Idade">Idade</label>
+                                <input class="form-control form-control-sm" type="number" placeholder="Idade" v-model="funcionario.idade" required>
+                                <div class="modal-footer">
+                                  <button class="btn btn-primary">Salvar</button>
+                                  <button type="button" class="btn btn-secondary" @click="showModal = false">Cancelar</button>
+                                </div>
+                              </form>
+                              </div>
+                          </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </transition>
+        </div>
+        <button @click="cadastro()" class="btn btn-info"><i class="material-icons">person_outline</i>Add Funcionario</button>
+      </div>
+      
+      <hr>
 
-          <label>Nome</label>
-          <input type="text" placeholder="Nome" v-model="funcionario.nome" required>
-          <label>Setor</label>
-          <input type="text" placeholder="Setor" v-model="funcionario.setor.nome" required>
-          <label>Salário</label>
-          <input type="number" placeholder="Salario" v-model="funcionario.salario" required>
-          <label>Email</label>
-          <input type="text" placeholder="Email" v-model="funcionario.email" required>
-          <label>Idade</label>
-          <input type="number" placeholder="Idade" v-model="funcionario.idade" required>
 
-          <button class="waves-effect waves-light btn-small">Salvar<i class="material-icons left">save</i></button>
+      <table class="table" style="text-align: center;">
 
-      </form>
-
-      <table class="striped">
-
-        <thead>
+        <thead class="bg-info">
 
           <tr>
             <th>Nome</th>
@@ -48,8 +75,8 @@
             <td>{{ funcionario.email }}</td> 
             <td>{{ funcionario.idade }}</td>
             <td>
-              <button @click="editar(funcionario)" class="waves-effect btn-small waves-light darken-1"><i class="material-icons">edit</i></button>
-              <button @click="remover(funcionario.id)" class="waves-effect btn-small waves-light darken-1"><i class="material-icons">delete_forever</i></button>
+              <button @click="editar(funcionario)" type="button" class="btn btn-success"><i class="material-icons">edit</i></button>
+              <button @click="remover(funcionario.id)" type="button" class="btn btn-danger" style="margin-left: 3px;"><i class="material-icons">delete_forever</i></button>
             </td>
 
           </tr>
@@ -57,24 +84,23 @@
         </tbody>
       
       </table>
-
     </div>
-
   </div>
 </template>
 
 <script>
 import Header from './components/shared/header/Header.vue'
 import Mensagem from './components/shared/mensagem/Mensagem.vue'
-import Form from './components/shared/form/Form.vue'
+
 import Funcionario from './services/funcionarios'
 
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 export default {
 
   components: {
     'mensagem-acao' : Mensagem,
-    'cabecalho' : Header,
-    'furmulario' : Form
+    'cabecalho' : Header
   },
 
   data() {
@@ -90,7 +116,9 @@ export default {
         idade: null
       },
       funcionarios:[],
-      mensagem: ''
+      mensagem: '',
+      showModal: false,
+      operacao: ''
     }
   },
 
@@ -120,6 +148,14 @@ export default {
     else {
       this.atualizar()
     }
+    this.showModal = false;
+      },
+
+      cadastro() {
+        this.limpaCampo();
+        this.listar()
+        this.showModal = true;
+        this.operacao = "Cadastro de funcionario";
       },
 
      async atualizar() {
@@ -134,6 +170,8 @@ export default {
 
       editar(funcionario) {
         this.funcionario = funcionario;
+        this.showModal = true;
+        this.operacao = "Editar funcionario"
       },
 
       async remover(id) {
@@ -152,6 +190,7 @@ export default {
       limpaCampo() {
         this.funcionario.id = null
         this.funcionario.nome = null
+        this.funcionario.setor.id = null
         this.funcionario.setor.nome = null
         this.funcionario.salario = null
         this.funcionario.email = null
@@ -161,15 +200,44 @@ export default {
       msgBalao(mensagem) {
         this.mensagem = mensagem
         var s = document.getElementById('msg').style;
-        s.opacity = 3;
-        (function fade(){(s.opacity-=.1)<0?s.display="":setTimeout(fade,100)})();
+        s.opacity = 5;
+        (function fade(){(s.opacity-=.1)<0?s.opacity="0":setTimeout(fade,100)})();
       }
-
     }
   }
 
 </script>
 
 <style>
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
 
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+hr {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #EEEEEE -moz-use-text-color #FFFFFF;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 18px 0;
+}
+
+.material-icons {
+  font-size: 15px;
+}
 </style>

@@ -1,7 +1,7 @@
 # pomodoro-timer
 
 <h1 align="center">
-  <img alt="logo" src="" width="200"/>
+
   <br>
 </h1>
 
@@ -25,9 +25,12 @@ Projeto crud feito para o processo seletivo da Hepta.
 ## :hammer:	Technologies
 This project was developed with these technologies:
 - [VueJS](https://vuejs.org/)
-- [Html5]()
+- [Html5](https://www.w3schools.com/html/default.asp)
+- [CSS3](https://www.w3schools.com/css/default.asp)
 - [Bootstrap](https://getbootstrap.com/)
-- [Java 8] ()
+- [Java 8](https://www.java.com)
+- [Bootstrap](https://getbootstrap.com/)
+- [Axios](https://github.com/axios/axios)
 
 ## :question: How to use
 Clone this repo into the directory you want to use for your new project, install dependencies and build project:
