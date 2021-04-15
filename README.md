@@ -1,4 +1,4 @@
-# pomodoro-timer
+# Sistema de cadastro de funcionarios
 
 <h1 align="center">
 

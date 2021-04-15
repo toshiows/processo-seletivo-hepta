@@ -45,13 +45,20 @@
             </div>
           </transition>
         </div>
+        <div class="form-row align-items-center">
+          
         <button @click="cadastro()" class="btn btn-info"><i class="material-icons">person_outline</i>Add Funcionario</button>
+          
+          <div class="col-auto busca">
+          <input v-on:input="filtro = $event.target.value" class="form-control" type="search" placeholder="Buscar na tabela" v-model="filter"/>
+          </div>
+        </div>
       </div>
       
       <hr>
 
 
-      <table class="table" style="text-align: center;">
+      <table class="table table-striped table-hover" style="text-align: center;">
 
         <thead class="bg-info">
 
@@ -68,7 +75,7 @@
 
         <tbody>
 
-          <tr  v-for="funcionario of funcionarios" :key="funcionario.id">
+          <tr  v-for="funcionario of tabelaComFiltro" :key="funcionario.id">
             <td>{{ funcionario.nome }}</td>
             <td>{{ funcionario.setor.nome }}</td>
             <td>{{ funcionario.salario }}</td> 
@@ -118,7 +125,25 @@ export default {
       funcionarios:[],
       mensagem: '',
       showModal: false,
-      operacao: ''
+      operacao: '',
+      filtro: ''
+    }
+  },
+
+  computed: {
+    tabelaComFiltro() {
+      if(this.filtro) {
+        let expr = new RegExp(this.filtro.trim(), 'i');
+
+        return this.funcionarios.filter(item => 
+          expr.test(item.nome) || expr.test(item.setor.nome) || 
+          expr.test(item.salario.toString()) ||
+          expr.test(item.email) || expr.test(item.idade.toString())
+        );
+      }
+      else {
+        return this.funcionarios;
+      }
     }
   },
 
@@ -209,6 +234,10 @@ export default {
 </script>
 
 <style>
+.busca {
+  margin-left: auto;
+}
+
 .modal-mask {
   position: fixed;
   z-index: 9998;

@@ -94,8 +94,7 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario>{
 		EntityManager em = HibernateUtil.getEntityManager();
 		Funcionario FuncionarioAtualizado = null;
 		SetorDAO setorDAO = new SetorDAO();
-		System.out.println("ID FUNCIONARIO ======== " + funcionario.getId());
-		System.out.println("ID SETOR ======== " + funcionario.getSetor().getId());
+
 		
 		try {
 			em.getTransaction().begin();
