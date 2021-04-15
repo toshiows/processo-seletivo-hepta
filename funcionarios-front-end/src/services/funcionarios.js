@@ -14,7 +14,7 @@ export default {
         return http.post('funcionarios', funcionario)
     },
 
-    atualizar:(funcionario) => {
-        return http.put('funcionarios', funcionario)
+    atualizar:(id, funcionario) => {
+        return http.put('funcionarios/'+ id, funcionario)
     }
 }

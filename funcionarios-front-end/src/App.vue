@@ -159,7 +159,7 @@ export default {
       },
 
      async atualizar() {
-       await Funcionario.atualizar(this.funcionario)
+       await Funcionario.atualizar(this.funcionario.id, this.funcionario)
         .then()
         .catch((err) => console.log(err))
 

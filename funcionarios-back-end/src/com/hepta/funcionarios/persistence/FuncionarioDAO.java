@@ -8,8 +8,9 @@ import javax.persistence.Query;
 
 import com.hepta.funcionarios.entity.Funcionario;
 
-public class FuncionarioDAO {
+public class FuncionarioDAO implements InterfaceDAO<Funcionario>{
 
+	@Override
 	public void save(Funcionario Funcionario) throws Exception {
 		EntityManager em = HibernateUtil.getEntityManager();
 		try {
@@ -40,6 +41,7 @@ public class FuncionarioDAO {
 		return FuncionarioAtualizado;
 	}
 
+	@Override
 	public void delete(Integer id) throws Exception {
 		EntityManager em = HibernateUtil.getEntityManager();
 		try {
@@ -55,7 +57,8 @@ public class FuncionarioDAO {
 		}
 
 	}
-
+	
+	@Override
 	public Funcionario find(Integer id) throws Exception {
 		EntityManager em = HibernateUtil.getEntityManager();
 		Funcionario Funcionario = null;
@@ -84,6 +87,28 @@ public class FuncionarioDAO {
 			em.close();
 		}
 		return Funcionarios;
+	}
+
+	@Override
+	public Funcionario update(Integer id, Funcionario funcionario) throws Exception {
+		EntityManager em = HibernateUtil.getEntityManager();
+		Funcionario FuncionarioAtualizado = null;
+		SetorDAO setorDAO = new SetorDAO();
+		System.out.println("ID FUNCIONARIO ======== " + funcionario.getId());
+		System.out.println("ID SETOR ======== " + funcionario.getSetor().getId());
+		
+		try {
+			em.getTransaction().begin();
+			setorDAO.salvarSetor(funcionario.getSetor());
+			FuncionarioAtualizado = em.merge(funcionario);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			throw new Exception(e);
+		} finally {
+			em.close();
+		}
+		return FuncionarioAtualizado;
 	}
 
 }
