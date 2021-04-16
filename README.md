@@ -33,4 +33,12 @@ This project was developed with these technologies:
 - [Axios](https://github.com/axios/axios)
 
 ## :question: How to use
-Clone this repo into the directory you want to use for your new project, install dependencies and build project:
+Clone esse repositorio no diretório que desejar, entre na pasta raiz do projeto
+
+cd <this_repo>
+docker-compose build --no-cache
+docker-compose up -d
+
+#parar
+docker-compose down
+

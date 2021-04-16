@@ -1,103 +1,157 @@
 <template>
-    <div class="container">
-      <mensagem-acao :mensagem="mensagem" />
-      
-        <div v-if="showModal">
-          <transition name="modal">
-            <div class="modal-mask">
-              <div class="modal-wrapper">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">{{ operacao }} </h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" @click="showModal = false">&times;</span>
-                      </button>
-                        </div>
-                          <div class="modal-body">
-                            <div class="form-group">
-                              <form @submit.prevent="salvar">
-                                <label for="Nome">Nome</label>
-                                <input class="form-control form-control-sm" type="text" placeholder="Nome" v-model="funcionario.nome" required>
-                                <label for="Setor">Setor</label>
-                                <input class="form-control form-control-sm" type="text" placeholder="Setor" v-model="funcionario.setor.nome" required>
-                                <label for="Salario">Salário</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="Salario" v-model="funcionario.salario" required>
-                                <label for="Email">Email</label>
-                                <input class="form-control form-control-sm" type="email" placeholder="Email" v-model="funcionario.email" required>
-                                <label for="Idade">Idade</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="Idade" v-model="funcionario.idade" required>
-                                <div class="modal-footer">
-                                  <button class="btn btn-primary">Salvar</button>
-                                  <button type="button" class="btn btn-secondary" @click="showModal = false">Cancelar</button>
-                                </div>
-                              </form>
-                              </div>
-                          </div>
+  <div class="container">
+    <mensagem-acao :mensagem="mensagem" />
+
+    <div v-if="showModal">
+      <transition name="modal">
+        <div class="modal-mask">
+          <div class="modal-wrapper">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">{{ operacao }}</h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true" @click="showModal = false"
+                      >&times;</span
+                    >
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <form @submit.prevent="salvar">
+                      <label for="Nome">Nome</label>
+                      <input
+                        class="form-control form-control-sm"
+                        type="text"
+                        placeholder="Nome"
+                        v-model="funcionario.nome"
+                        required
+                      />
+                      <label for="Setor">Setor</label>
+                      <input
+                        class="form-control form-control-sm"
+                        type="text"
+                        placeholder="Setor"
+                        v-model="funcionario.setor.nome"
+                        required
+                      />
+                      <label for="Salario">Salário</label>
+                      <input
+                        class="form-control form-control-sm"
+                        type="number"
+                        placeholder="Salario"
+                        v-model="funcionario.salario"
+                        required
+                      />
+                      <label for="Email">Email</label>
+                      <input
+                        class="form-control form-control-sm"
+                        type="email"
+                        placeholder="Email"
+                        v-model="funcionario.email"
+                        required
+                      />
+                      <label for="Idade">Idade</label>
+                      <input
+                        class="form-control form-control-sm"
+                        type="number"
+                        placeholder="Idade"
+                        v-model="funcionario.idade"
+                        required
+                      />
+                      <div class="modal-footer">
+                        <button class="btn btn-primary">Salvar</button>
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          @click="showModal = false"
+                        >
+                          Cancelar
+                        </button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
-          </transition>
-        </div>
-        <div class="form-row align-items-center">
-          
-        <button @click="cadastro()" class="btn btn-info"><i class="material-icons">person_outline</i>Add Funcionario</button>
-          
-          <div class="col-auto busca">
-          <input v-on:input="filtro = $event.target.value" class="form-control" type="search" placeholder="Buscar na tabela" v-model="filter"/>
           </div>
         </div>
-      
-      <hr>
-
-
-      <table class="table table-striped table-hover" style="text-align: center;">
-
-        <thead class="bg-info">
-
-          <tr>
-            <th>Nome</th>
-            <th>Setor</th>
-            <th>Salário</th>
-            <th>Email</th>
-            <th>Idade</th>
-            <th>Ações</th>
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          <tr  v-for="funcionario of tabelaComFiltro" :key="funcionario.id">
-            <td>{{ funcionario.nome }}</td>
-            <td>{{ funcionario.setor.nome }}</td>
-            <td>{{ funcionario.salario }}</td> 
-            <td>{{ funcionario.email }}</td> 
-            <td>{{ funcionario.idade }}</td>
-            <td>
-              <button @click="editar(funcionario)" type="button" class="btn btn-success"><i class="material-icons">edit</i></button>
-              <button @click="remover(funcionario.id)" type="button" class="btn btn-danger" style="margin-left: 3px;"><i class="material-icons">delete_forever</i></button>
-            </td>
-
-          </tr>
-
-        </tbody>
-      
-      </table>
+      </transition>
     </div>
+    <div class="form-row align-items-center">
+      <button @click="cadastro()" class="btn btn-info">
+        <i class="material-icons">person_outline</i>Add Funcionario
+      </button>
+
+      <div class="col-auto busca">
+        <input
+          v-on:input="filtro = $event.target.value"
+          class="form-control"
+          type="search"
+          placeholder="Buscar na tabela"
+          v-model="filter"
+        />
+      </div>
+    </div>
+
+    <hr />
+
+    <table class="table table-striped table-hover" style="text-align: center;">
+      <thead class="bg-info">
+        <tr>
+          <th>Nome</th>
+          <th>Setor</th>
+          <th>Salário</th>
+          <th>Email</th>
+          <th>Idade</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="funcionario of tabelaComFiltro" :key="funcionario.id">
+          <td>{{ funcionario.nome }}</td>
+          <td>{{ funcionario.setor.nome }}</td>
+          <td>{{ funcionario.salario }}</td>
+          <td>{{ funcionario.email }}</td>
+          <td>{{ funcionario.idade }}</td>
+          <td>
+            <button
+              @click="editar(funcionario)"
+              type="button"
+              class="btn btn-success"
+            >
+              <i class="material-icons">edit</i>
+            </button>
+            <button
+              @click="remover(funcionario.id)"
+              type="button"
+              class="btn btn-danger"
+              style="margin-left: 3px;"
+            >
+              <i class="material-icons">delete_forever</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
+import Funcionario from "@/services/funcionarios";
+import Mensagem from "@/components/shared/mensagem/Mensagem.vue";
 
-import Funcionario from '@/services/funcionarios'
-import Mensagem from '@/components/shared/mensagem/Mensagem.vue'
-
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 export default {
   components: {
-    'mensagem-acao' : Mensagem
+    "mensagem-acao": Mensagem,
   },
   data() {
     return {
@@ -105,121 +159,122 @@ export default {
         id: null,
         nome: null,
         setor: {
-          nome: null
+          nome: null,
         },
         salario: null,
         email: null,
-        idade: null
+        idade: null,
       },
-      funcionarios:[],
-      mensagem: '',
+      funcionarios: [],
+      mensagem: "",
       showModal: false,
-      operacao: '',
-      filtro: ''
-    }
+      operacao: "",
+      filtro: "",
+    };
   },
 
   computed: {
     tabelaComFiltro() {
-      if(this.filtro) {
-        let expr = new RegExp(this.filtro.trim(), 'i');
+      if (this.filtro) {
+        let expr = new RegExp(this.filtro.trim(), "i");
 
-        return this.funcionarios.filter(item => 
-          expr.test(item.nome) || expr.test(item.setor.nome) || 
-          expr.test(item.salario.toString()) ||
-          expr.test(item.email) || expr.test(item.idade.toString())
+        return this.funcionarios.filter(
+          (item) =>
+            expr.test(item.nome) ||
+            expr.test(item.setor.nome) ||
+            expr.test(item.salario.toString()) ||
+            expr.test(item.email) ||
+            expr.test(item.idade.toString())
         );
-      }
-      else {
+      } else {
         return this.funcionarios;
       }
-    }
+    },
   },
 
   mounted() {
-    this.listar()
+    this.listar();
   },
 
   methods: {
     listar() {
-        Funcionario.listar().then(resposta => {
+      Funcionario.listar().then((resposta) => {
         this.funcionarios = resposta.data;
-     })
+      });
     },
 
-  async salvar() {
-    if(this.funcionario.id == null) {
-      this.listar()
-      await Funcionario.salvar(this.funcionario)
-      .then()
-      .catch((err) => console.log(err))
-
-      this.limpaCampo()
-      this.listar()
-
-      this.msgBalao('Funcionario adicionado com sucesso!')
-    }
-    else {
-      this.atualizar()
-    }
-    this.showModal = false;
-      },
-
-      cadastro() {
-        this.limpaCampo();
-        this.listar()
-        this.showModal = true;
-        this.operacao = "Cadastro de funcionario";
-      },
-
-     async atualizar() {
-       await Funcionario.atualizar(this.funcionario.id, this.funcionario)
-        .then()
-        .catch((err) => console.log(err))
-
-        this.limpaCampo()
-        this.listar()
-        this.msgBalao('Funcionario atualizado com sucesso!')
-      },
-
-      editar(funcionario) {
-        this.funcionario = funcionario;
-        this.showModal = true;
-        this.operacao = "Editar funcionario"
-      },
-
-      async remover(id) {
-        if(confirm('Deseja realmente remover o funcionário?')) {
-          await Funcionario.deletar(id)
+    async salvar() {
+      if (this.funcionario.id == null) {
+        this.listar();
+        await Funcionario.salvar(this.funcionario)
           .then()
-          .catch((err) => console.log(err))
+          .catch((err) => console.log(err));
 
-          this.listar()
-          
-          this.msgBalao('Funcionario excluido com sucesso!')
-        }
+        this.limpaCampo();
+        this.listar();
 
-      },
-
-      limpaCampo() {
-        this.funcionario.id = null
-        this.funcionario.nome = null
-        this.funcionario.setor.id = null
-        this.funcionario.setor.nome = null
-        this.funcionario.salario = null
-        this.funcionario.email = null
-        this.funcionario.idade = null
-      },
-
-      msgBalao(mensagem) {
-        this.mensagem = mensagem
-        var s = document.getElementById('msg').style;
-        s.opacity = 5;
-        (function fade(){(s.opacity-=.1)<0?s.opacity="0":setTimeout(fade,100)})();
+        this.msgBalao("Funcionario adicionado com sucesso!");
+      } else {
+        this.atualizar();
       }
-    }
-  }
+      this.showModal = false;
+    },
 
+    cadastro() {
+      this.limpaCampo();
+      this.listar();
+      this.showModal = true;
+      this.operacao = "Cadastro de funcionario";
+    },
+
+    async atualizar() {
+      await Funcionario.atualizar(this.funcionario.id, this.funcionario)
+        .then()
+        .catch((err) => console.log(err));
+
+      this.limpaCampo();
+      this.listar();
+      this.msgBalao("Funcionario atualizado com sucesso!");
+    },
+
+    editar(funcionario) {
+      this.funcionario = funcionario;
+      this.showModal = true;
+      this.operacao = "Editar funcionario";
+    },
+
+    async remover(id) {
+      if (confirm("Deseja realmente remover o funcionário?")) {
+        await Funcionario.deletar(id)
+          .then()
+          .catch((err) => console.log(err));
+
+        this.listar();
+
+        this.msgBalao("Funcionario excluido com sucesso!");
+      }
+    },
+
+    limpaCampo() {
+      this.funcionario.id = null;
+      this.funcionario.nome = null;
+      this.funcionario.setor.id = null;
+      this.funcionario.setor.nome = null;
+      this.funcionario.salario = null;
+      this.funcionario.email = null;
+      this.funcionario.idade = null;
+    },
+
+    msgBalao(mensagem) {
+      this.mensagem = mensagem;
+      var s = document.getElementById("msg").style;
+      s.opacity = 5;
+      (function fade() {
+        (s.opacity -= 0.1) < 0 ? (s.opacity = "0") : setTimeout(fade, 100);
+      })();
+    },
+  },
+};
 </script>
 
 <style>
@@ -234,9 +289,9 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   display: table;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .modal-wrapper {
@@ -249,7 +304,7 @@ hr {
   -moz-border-left-colors: none;
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
-  border-color: #EEEEEE -moz-use-text-color #FFFFFF;
+  border-color: #eeeeee -moz-use-text-color #ffffff;
   border-style: solid none;
   border-width: 1px 0;
   margin: 18px 0;

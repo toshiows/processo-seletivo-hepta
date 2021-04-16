@@ -1,0 +1,24 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=123987
+      - MYSQL_DATABASE=funcionarios_bd
+    ports:
+      - "3306:3306"
+    networks:
+      - production-network
+
+  tomcat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - production-network
+
+networks:
+  production-network:
+    driver: bridge
