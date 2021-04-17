@@ -38,7 +38,10 @@ Clone esse repositorio no diretório que desejar e entre na pasta raiz do projet
 
 ## **Com Docker** :whale:
 
-Caso não possua o docker, siga as [instruções](https://github.com/axios/axios) para instalação.
+Caso não possua o docker, siga as [instruções](https://www.docker.com/get-started) para instalação.
+
+Obs: caso tenha algum serviço rodando na porta 3306 interrompa para o docker subir o mysql sem erros.
+<br>
 
 **Faça o build do projeto:**
 
