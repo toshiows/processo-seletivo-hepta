@@ -12,7 +12,7 @@ services:
 
   app-back:
     build:
-      context: ./funcionarios-back-end
+      context: funcionarios-back-end
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
@@ -21,7 +21,7 @@ services:
 
   web-front:
       build:
-        context: ./funcionarios-front-end
+        context: funcionarios-front-end
         dockerfile: Dockerfile
       stdin_open: true
       tty: true
