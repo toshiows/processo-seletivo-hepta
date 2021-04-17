@@ -93,9 +93,22 @@ class FuncionarioServiceTest {
 		
 		service = TestUtil.target(URL, "funciona");
 		Response resp = service.request().get();
-		System.out.println(resp.getStatusInfo().getStatusCode());
 		assertNotEquals(Response.Status.OK.getStatusCode(), resp.getStatusInfo().getStatusCode());
 	}
 	
+	@Test
+	public void testFuncionarioDeleteError() throws JsonParseException, JsonMappingException, IOException {
+		service = TestUtil.target(URL, "funcionarios/9999999");
+		Response resp = service.request().delete();
+		assertNotEquals(Response.Status.OK.getStatusCode(), resp.getStatusInfo().getStatusCode());
+	}
+	
+	@Test
+	public void testFuncionarioUpdateError() throws JsonParseException, JsonMappingException, IOException {
+		service = TestUtil.target(URL, "funcionarios/9999999");
+		Response upd = service.request().put(Entity.entity(funcionario, MediaType.APPLICATION_JSON));
+		assertNotEquals(Response.Status.OK.getStatusCode(), upd.getStatusInfo().getStatusCode());
+		
+	}
 
 }

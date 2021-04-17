@@ -19,18 +19,14 @@ services:
     networks:
       - production-network
 
-  app-front:
-    build:
-      context: ./funcionarios-front-end
-      dockerfile: Dockerfile
-    volumes:
-      - .:/app
-    working_dir: /app
-    ports:
-      - "3000:3000"
-    networks:
-      - production-network
-    command: ['yarn', 'serve']
+  web-front:
+      build:
+        context: ./funcionarios-front-end
+        dockerfile: Dockerfile
+      stdin_open: true
+      tty: true
+      ports: 
+          - "8081:8080"
 
 
 networks:
