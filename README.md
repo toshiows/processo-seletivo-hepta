@@ -1,5 +1,6 @@
 
 
+
 # Sistema de cadastro de funcionarios
 
 
@@ -7,7 +8,7 @@
 </h1>
 
 <p align="center">
-	  <a href="#user-content--thinking">Sobre 		</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+	  <a href="#user-content--thinking">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 	  <a href="#user-content--Preview">Preview</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 	  <a href="#user-content--Tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 	  <a href="#user-content--Como rodar o projeto">Como rodar</a>
@@ -56,6 +57,7 @@ $ docker-compose build --no-cache
 ```
 $ docker-compose up -d
 ```
+Após a subida dos três containers, acesse a aplicação através da seguinte url http://localhost:8081/
 
 **Para interromper a aplicação:**
 
