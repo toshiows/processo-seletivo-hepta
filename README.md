@@ -7,23 +7,23 @@
 </h1>
 
 <p align="center">
-  <a href="#thinking-about">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#user-content--preview">Preview</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#rocket-technologies">Tecnologia</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#information-source-how-to-use">Como rodar</a>
+	  <a href="#user-content--thinking">Sobre 		</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+	  <a href="#user-content--Preview">Preview</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+	  <a href="#user-content--Tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+	  <a href="#user-content--Como rodar o projeto">Como rodar</a>
 </p>
 
-## About :thinking:
+### Sobre :thinking:
 Projeto crud para cadastro de funcionários feito para o processo seletivo da Hepta, desenvolvido em Java para o backend e VueJS para o frontend.
 <div>
 
 </div>
 
 
-## :eyeglasses: Preview
-![]()
+### :eyeglasses: Preview
+![enter image description here](https://i.imgur.com/9h6J2xCl.png)
 
-## :hammer:	Technologies
+### :hammer:	Tecnologias
 Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - [VueJS](https://vuejs.org/)
 - [Html5](https://www.w3schools.com/html/default.asp)
@@ -33,10 +33,10 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - [Bootstrap](https://getbootstrap.com/)
 - [Axios](https://github.com/axios/axios)
 
-## :question: Como rodar o projeto
+### :question: Como rodar o projeto
 Clone esse repositorio no diretório que desejar e entre na pasta raiz do projeto.
 
-**Com Docker** :whale:
+## **Com Docker** :whale:
 
 Caso não possua o docker, siga as [instruções](https://github.com/axios/axios) para instalação.
 
@@ -61,7 +61,7 @@ $ docker-compose down
 ```
 <br>
 
-**Sem o Docker** :computer:
+## **Sem o Docker** :computer:
 
 **1. Executar o backend Java** :coffee:
 
