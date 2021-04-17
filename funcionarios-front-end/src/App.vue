@@ -11,9 +11,9 @@
 
 <script>
 
-import Header from './components/shared/header/Header.vue'
-import Crud from './components/shared/crud/Crud.vue'
-import Footer from './components/shared/footer/Footer.vue'
+import Header from '@/components/shared/header/Header.vue'
+import Crud from '@/components/shared/crud/Crud.vue'
+import Footer from '@/components/shared/footer/Footer.vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'

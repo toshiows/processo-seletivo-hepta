@@ -100,11 +100,10 @@ public class SetorDAO implements InterfaceDAO<Setor>{
 			for(Setor s: setores) {
 				if(s.getId().equals(setor.getId())) {
 					setor.setId(s.getId());
-					System.out.println("NOMEEEEEEEEE = " + setor.getNome());
 					return;
 				}
 			}
-			throw new Exception("Não foi possivel atualizar o setor");
+			throw new Exception("Nï¿½o foi possivel atualizar o setor");
 		}
 	}
 

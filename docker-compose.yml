@@ -1,0 +1,38 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=123987
+      - MYSQL_DATABASE=funcionarios_bd
+    ports:
+      - "3306:3306"
+    networks:
+      - production-network
+
+  app-back:
+    build:
+      context: ./funcionarios-back-end
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - production-network
+
+  app-front:
+    build:
+      context: ./funcionarios-front-end
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    networks:
+      - production-network
+    command: ['yarn', 'serve']
+
+
+networks:
+  production-network:
+    driver: bridge
