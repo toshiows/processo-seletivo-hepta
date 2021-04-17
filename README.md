@@ -1,9 +1,9 @@
 
+
 # Sistema de cadastro de funcionarios
 
-<h1 align="center">
 
-  <br>
+
 </h1>
 
 <p align="center">
@@ -117,3 +117,18 @@ $ npm run serve
 <br>
 
 Tudo certo! agora basta acessar o endereço retornado pelo terminal, que provavelmente será http://localhost:8081 ou alguma outra porta.
+
+
+## **Execução dos testes de integração** :vertical_traffic_light:
+
+Após subir o backend como demonstrado acima, acesse o diretório raiz do back-end.
+
+ ```
+ $ cd <processo-seletivo-hepta-master>
+ $ cd <funcionarios-back-end>
+ ```
+
+Rode o seguinte comando para executar os testes:
+```
+$ mvn test 
+```
