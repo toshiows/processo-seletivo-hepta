@@ -1,7 +1,6 @@
 <template>
 <div>
-    <cabecalho sistema="Sistema de cadastro de funcionarios" />
-    
+  
     <section class="jumbotron text-center">
         <div class="container"></div>
         <h1 class="jumbotron-heading">Sistema Desenvolvido Com Java e Vue</h1>
@@ -12,19 +11,13 @@
         <div class="col-md-10"></div>
         <div class="col-md-1"></div>
     </div>
-    <footer-component />
 </div>
 </template>
 
 <script>
-import Header from '@/components/shared/header/Header.vue'
-import Footer from '@/components/shared/footer/Footer.vue'
 
 export default {
-  components: {
-    'cabecalho' : Header,
-    'footer-component' : Footer
-  }
+
 }
 </script>
 
