@@ -21,6 +21,7 @@ import javax.ws.rs.core.Response.Status;
 
 import com.hepta.funcionarios.entity.Funcionario;
 import com.hepta.funcionarios.persistence.FuncionarioDAO;
+import com.hepta.funcionarios.service.FuncionarioServ;
 
 @Path("/funcionarios")
 public class FuncionarioService {
@@ -31,10 +32,10 @@ public class FuncionarioService {
 	@Context
 	private HttpServletResponse response;
 
-	private FuncionarioDAO dao;
+	private FuncionarioServ dao;
 
 	public FuncionarioService() {
-		dao = new FuncionarioDAO();
+		dao = new FuncionarioServ();
 	}
 
 	protected void setRequest(HttpServletRequest request) {
@@ -53,7 +54,7 @@ public class FuncionarioService {
 	@POST
 	public Response FuncionarioCreate(Funcionario funcionario) {
 		try {
-			dao.save(funcionario);
+			dao.salvarFuncionario(funcionario);
 		}catch(Exception e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
@@ -71,7 +72,7 @@ public class FuncionarioService {
 	public Response FuncionarioRead() {
 		List<Funcionario> Funcionarios = new ArrayList<>();
 		try {
-			Funcionarios = dao.getAll();
+			Funcionarios = dao.listarFuncionarios();
 		} catch (Exception e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Erro ao buscar Funcionarios").build();
 		}
@@ -95,7 +96,7 @@ public class FuncionarioService {
 	public Response FuncionarioUpdate(@PathParam("id") Integer id, Funcionario funcionario) {
 		try {
 			//dao.update(funcionario);
-			dao.update(id, funcionario);
+			dao.atualizarFuncionario(id, funcionario);
 		}catch(Exception e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
@@ -114,7 +115,7 @@ public class FuncionarioService {
 	@DELETE
 	public Response FuncionarioDelete(@PathParam("id") Integer id) {
 		try {
-			dao.delete(id);
+			dao.excluirFuncionario(id);
 		} catch (Exception e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
