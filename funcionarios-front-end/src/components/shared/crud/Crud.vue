@@ -140,6 +140,7 @@
         </tr>
       </tbody>
     </table>
+    <div class="lds-ring" v-show="load"><div></div><div></div><div></div><div></div></div>
   </div>
 </template>
 
@@ -170,6 +171,7 @@ export default {
       showModal: false,
       operacao: "",
       filtro: "",
+      load: false
     };
   },
 
@@ -204,6 +206,7 @@ export default {
     },
 
     async salvar() {
+      this.load = true;
       if (this.funcionario.id == null) {
         this.listar();
         await Funcionario.salvar(this.funcionario)
@@ -218,6 +221,7 @@ export default {
         this.atualizar();
       }
       this.showModal = false;
+      this.load = false;
     },
 
     cadastro() {
@@ -228,6 +232,7 @@ export default {
     },
 
     async atualizar() {
+      this.load = true;
       await Funcionario.atualizar(this.funcionario.id, this.funcionario)
         .then()
         .catch((err) => console.log(err));
@@ -235,6 +240,7 @@ export default {
       this.limpaCampo();
       this.listar();
       this.msgBalao("Funcionario atualizado com sucesso!");
+      this.load = false;
     },
 
     editar(funcionario) {
@@ -245,6 +251,7 @@ export default {
 
     async remover(id) {
       if (confirm("Deseja realmente remover o funcionário?")) {
+        this.load = true;
         await Funcionario.deletar(id)
           .then()
           .catch((err) => console.log(err));
@@ -252,6 +259,7 @@ export default {
         this.listar();
 
         this.msgBalao("Funcionario excluido com sucesso!");
+        this.load = false;
       }
     },
 
@@ -313,4 +321,42 @@ hr {
 .material-icons {
   font-size: 15px;
 }
+
+/* Loading */
+.lds-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  padding-left: 500px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid rgb(19, 109, 112);
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: rgb(27, 146, 155) transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 </style>

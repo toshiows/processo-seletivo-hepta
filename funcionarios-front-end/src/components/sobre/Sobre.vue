@@ -4,7 +4,7 @@
     <section class="jumbotron text-center">
         <div class="container"></div>
         <h1 class="jumbotron-heading">Sistema Desenvolvido Com Java e Vue</h1>
-        <p class="lead text-muted">Acesse o repositório <a href="https://github.com/toshiows/processo-seletivo-hepta">aqui</a></p>
+        <p class="lead text-muted">Acesse o repositório <a href="https://github.com/toshiows/processo-seletivo-hepta">aqui.</a></p>
     </section>
     <div class="row">
         <div class="col-md-1"></div>
