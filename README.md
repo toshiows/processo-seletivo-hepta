@@ -1,6 +1,7 @@
 
 
 
+
 # Sistema de cadastro de funcionarios
 
 
@@ -80,6 +81,11 @@ $ docker-compose down
  - Configure as variáveis de ambiente do [Maven](https://pt.stackoverflow.com/questions/259927/como-configurar-vari%C3%A1veis-de-ambiente-maven-java#:~:text=Nos%20campos%20nome%20e%20valor,e%20adicione%20%25MAVEN_HOME%25%5Cbin%20.) e [Java](https://www.devmedia.com.br/preparacao-do-ambiente-para-desenvolvimento-em-java/25188)
  - Baixe o [Apache Tomcat](http://tomcat.apache.org/) e descompacte na pasta que preferir e é necessário [configurar o Tomcat](http://www.mhavila.com.br/topicos/java/tomcat.html).
  - Instale o Mysql e configure com o usuário ***root*** e senha ***123987*** ou as credencias que preferir, porém será necessário alterar o arquivo **persistence.xml**.
+ 
+ - Alterar a seguinte configuração no arquivo **persistence.xml**, trocando o host de **db:3306** para **localhost:3306**.  Ficando da seguinte forma:
+ ```
+ value="jdbc:mysql://localhost:3306/funcionarios_bd?serverTimezone=America/Sao_Paulo&amp;autoReconnect=true&amp;useSSL=false"
+```
  
  **Executando o projeto:**
  
